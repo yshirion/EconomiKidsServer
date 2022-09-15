@@ -7,30 +7,30 @@ import java.util.UUID;
 @Table(name = "users")
 public class User {
     @Id
-    UUID id;
-    UUID familyId;
-    String firstName,lastName, userName, password;
-    boolean parent;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private int familyId;
+    private String firstName,lastName, userName, password;
+    private boolean parent;
+    private double balance;
 
-    protected User() {
+    public User() {
     }
 
-    public User(String firstName, String lastName, String userName, String password, UUID uuid, UUID familyId, boolean parent) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.password = password;
-        this.id = uuid;
-        this.familyId = familyId;
-        this.parent = parent;
-    }
-
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getFamilyId() {
+        return familyId;
+    }
+
+    public void setFamilyId(int familyId) {
+        this.familyId = familyId;
     }
 
     public String getFirstName() {
@@ -65,19 +65,19 @@ public class User {
         this.password = password;
     }
 
-    public UUID getFamilyId() {
-        return familyId;
-    }
-
-    public void setFamilyId(UUID familyId) {
-        this.familyId = familyId;
-    }
-
     public boolean isParent() {
         return parent;
     }
 
     public void setParent(boolean parent) {
         this.parent = parent;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }

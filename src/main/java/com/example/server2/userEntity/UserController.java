@@ -1,5 +1,7 @@
 package com.example.server2.userEntity;
 
+import com.example.server2.actEntity.ActController;
+import com.example.server2.familyEntity.FamilyController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -10,18 +12,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-    @GetMapping
-    public String ss(){
-        return "ddd";
-    }
+
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> findUserById(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity<User> findUserById(@PathVariable(value = "id") Long id) {
         Optional<User> user = userRepository.findById(id);
         if(user.isPresent()) {
             return ResponseEntity.ok().body(user.get());
@@ -30,14 +29,14 @@ public class UserController {
         }
     }
 
-    @GetMapping("/FId")
-    public List<User> findByFamily(@PathVariable(value = "FId") UUID Fid){
+    @GetMapping("/family/{FId}")
+    public List<User> findByFamily(@PathVariable(value = "FId") Long Fid){
         List<User> users = userRepository.findByFamilyId(Fid);
         return users;
     }
 
 
-    @PostMapping("/save")
+    @PostMapping()
     public User saveUser(@RequestBody User user) {
         return userRepository.save(user);
     }

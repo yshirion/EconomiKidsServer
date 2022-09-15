@@ -9,12 +9,12 @@ import java.util.UUID;
 public class Action {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    UUID user;
-    boolean positive;
-    String type;
-    double amount;
-    Date start;
+    private long id;
+    private UUID user;
+    private boolean positive;
+    private String type;
+    private double amount;
+    private Date start;
 
     public Action() {
     }
