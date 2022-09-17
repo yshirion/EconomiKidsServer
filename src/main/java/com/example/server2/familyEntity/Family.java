@@ -8,9 +8,10 @@ import java.util.UUID;
 public class Family {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int fId;
+    long fId;
     String name;
     double loanInterest, investLongInterest, investShortInterest;
+    final double MIN_INTEREST = 0.1;
 
     protected Family(){}
     public Family(String name, int fId,
@@ -23,11 +24,19 @@ public class Family {
         this.investShortInterest = investShortInterest;
     }
 
-    public int getfId() {
+    public Family(String name){
+        this.name =name;
+        loanInterest = MIN_INTEREST;
+        investLongInterest = MIN_INTEREST;
+        investShortInterest = MIN_INTEREST;
+    }
+
+
+    public long getfId() {
         return fId;
     }
 
-    public void setfId(int fId) {
+    public void setfId(long fId) {
         this.fId = fId;
     }
 

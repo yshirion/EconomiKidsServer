@@ -19,17 +19,18 @@ public class FamilyController {
     private FamilyRepository familyRepository;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Family> findUserById(@PathVariable(value = "id") int id) {
+    public Family findFamilyById(@PathVariable(value = "id") long id) {
         Optional<Family> family = familyRepository.findById(id);
-        if(family.isPresent()) {
-            return ResponseEntity.ok().body(family.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        if(family.isPresent())
+            return family.get();
+        else return null;
+
     }
     @PostMapping("/save")
-    public void saveFamily(Family family) {
-        familyRepository.save(family);
+    public Family saveFamily(Family family) {
+        Family family1;
+        family1 = familyRepository.save(family);
+        return family1;
     }
 
 }
