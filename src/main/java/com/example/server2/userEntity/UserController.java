@@ -44,9 +44,10 @@ public class UserController {
         return user.orElse(null);
     }
 
-    @GetMapping("/family/{FId}")
-    public List<User> findByFamily(@PathVariable(value = "FId") Long Fid){
-        List<User> users = userRepository.findByFamilyId(Fid);
+    @GetMapping("/family/{id}")
+    public List<User> findByFamily(@PathVariable(value = "id") Long id){
+        List<User> users = userRepository.findByFamilyId(id, false);
+        for (User user: users) System.out.println(user.getUser_name());
         return users;
     }
 

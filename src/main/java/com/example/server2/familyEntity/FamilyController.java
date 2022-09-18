@@ -21,9 +21,7 @@ public class FamilyController {
     @GetMapping("/{id}")
     public Family findFamilyById(@PathVariable(value = "id") long id) {
         Optional<Family> family = familyRepository.findById(id);
-        if(family.isPresent())
-            return family.get();
-        else return null;
+        return family.orElse(null);
 
     }
     @PostMapping("/save")

@@ -14,7 +14,7 @@ public class Family {
     final double MIN_INTEREST = 0.1;
 
     protected Family(){}
-    public Family(String name, int fId,
+    public Family(String name, long fId,
                   double loanInterest, double investLongInterest,
                   double investShortInterest) {
         this.name = name;
@@ -30,7 +30,6 @@ public class Family {
         investLongInterest = MIN_INTEREST;
         investShortInterest = MIN_INTEREST;
     }
-
 
     public long getfId() {
         return fId;
@@ -70,5 +69,9 @@ public class Family {
 
     public void setInvestShortInterest(double investShortInterest) {
         this.investShortInterest = investShortInterest;
+    }
+
+    public double getMIN_INTEREST() {
+        return MIN_INTEREST;
     }
 }
