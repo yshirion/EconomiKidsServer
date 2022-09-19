@@ -51,6 +51,12 @@ public class UserController {
         return users;
     }
 
+    @GetMapping("/parent/{fid}")
+    public User getParent(@PathVariable(value = "fid") long fid){
+        Optional<User> parent = userRepository.findParentByFamily(fid, true);
+        return parent.orElse(null);
+    }
+
     @Autowired
     private FamilyController familyController;
 
@@ -85,4 +91,5 @@ public class UserController {
         userRepository.save(user);
         return "saved";
     }
+
 }

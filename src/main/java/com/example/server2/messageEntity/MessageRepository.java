@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
+
 public interface MessageRepository extends CrudRepository<Message,Long> {
     @Query(value = "SELECT * FROM messages WHERE messages.sender = ?",nativeQuery = true)
     List<Message> findBySender(UUID sender);

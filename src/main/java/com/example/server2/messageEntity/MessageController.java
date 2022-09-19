@@ -29,7 +29,10 @@ public class MessageController {
     }
 
     @PostMapping("/save")
-    public void saveMessage(@RequestBody Message message) {
-        messageRepository.save(message);
+    public String saveMessage(@RequestBody Message message) {
+        Message message1 = messageRepository.save(message);
+        if (message1 == null)
+            return "The message not save.";
+        return "saved";
     }
 }

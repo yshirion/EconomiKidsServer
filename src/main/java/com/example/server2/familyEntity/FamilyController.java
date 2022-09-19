@@ -31,4 +31,15 @@ public class FamilyController {
         return family1;
     }
 
+    @PostMapping("/update")
+    public Family update(@RequestBody Family family){
+        Family tmp = new Family();
+        familyRepository.updateFamily(
+                family.getLoanInterest(),
+                family.getInvestLongInterest(),
+                family.getInvestShortInterest(),
+                family.getfId());
+        return tmp;
+    }
+
 }
