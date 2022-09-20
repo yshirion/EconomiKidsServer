@@ -10,6 +10,6 @@ import java.util.UUID;
 @Repository
 public interface LoanRepository extends CrudRepository<Loan, Long> {
         @Query(value = "SELECT * FROM loans WHERE loans.user = ?",nativeQuery = true)
-        List<Loan> findByUid(UUID user);
+        List<Loan> findByUid(long user);
 
 }

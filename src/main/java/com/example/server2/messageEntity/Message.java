@@ -3,6 +3,7 @@ package com.example.server2.messageEntity;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -10,24 +11,37 @@ import java.util.UUID;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    long destination;
-    long sender;
-    String subject;
+    private long id;
+    private long destination;
+    private long sender;
+    private String subject;
+    private String sender_name;
+
+
     boolean readed;
+    LocalDate today;
     @Column(name = "text", nullable = false, columnDefinition = "BLOB NOT NULL")
     String text;
 
     public Message() {
     }
 
-    public Message(int id, long sender, long destination, String subject, String text, boolean readed) {
+    public LocalDate getToday() {
+        return today;
+    }
+
+    public void setToday(LocalDate today) {
+        this.today = today;
+    }
+
+    public Message(long id, long destination, long sender, String subject, boolean readed, LocalDate today, String text) {
         this.id = id;
-        this.sender = sender;
         this.destination = destination;
+        this.sender = sender;
         this.subject = subject;
-        this.text = text;
         this.readed = readed;
+        this.today = today;
+        this.text = text;
     }
 
     public long getId() {
@@ -76,5 +90,13 @@ public class Message {
 
     public void setReaded(boolean readed) {
         this.readed = readed;
+    }
+
+    public String getSender_name() {
+        return sender_name;
+    }
+
+    public void setSender_name(String sender_name) {
+        this.sender_name = sender_name;
     }
 }

@@ -10,5 +10,5 @@ import java.util.UUID;
 @Repository
 public interface InvestRepository extends CrudRepository<Invest, Long>{
     @Query(value = "SELECT * FROM invests WHERE invests.user = ?",nativeQuery = true)
-    List<Invest> findByUid(UUID user);
+    List<Invest> findByUid(long user);
 }

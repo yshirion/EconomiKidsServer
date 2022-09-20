@@ -1,51 +1,45 @@
 package com.example.server2.investEntity;
 
-import org.hibernate.annotations.Type;
+import com.example.server2.actEntity.Action;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.UUID;
+import java.time.LocalDate;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "invests")
 public class Invest {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    double investAmount, currentAmount, interest;
-    UUID user;
-    Date start, end;
-    boolean longTerm;
+    private long Iid;
+    private double currentAmount, interest;
+    private LocalDate end;
+    private double amount;
+    private LocalDate start;
+    private long user;
+    private boolean longTerm;
 
-    protected Invest() {}
+    public Invest() {}
 
-    public Invest(int id, double investAmount,
-                  double currentAmount, double interest, UUID user,
-                  Date start, Date end, boolean longTerm) {
-        this.id = id;
-        this.investAmount = investAmount;
+    public Invest(long iid, double currentAmount, double interest, LocalDate end, double amount, LocalDate start, long user, boolean longTerm) {
+        Iid = iid;
         this.currentAmount = currentAmount;
         this.interest = interest;
-        this.user = user;
-        this.start = start;
         this.end = end;
+        this.amount = amount;
+        this.start = start;
+        this.user = user;
         this.longTerm = longTerm;
     }
 
-    public long getId() {
-        return id;
+    public long getIid() {
+        return Iid;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public double getInvestAmount() {
-        return investAmount;
-    }
-
-    public void setInvestAmount(double investAmount) {
-        this.investAmount = investAmount;
+    public void setIid(long iid) {
+        Iid = iid;
     }
 
     public double getCurrentAmount() {
@@ -64,28 +58,36 @@ public class Invest {
         this.interest = interest;
     }
 
-    public UUID getUser() {
-        return user;
-    }
-
-    public void setUser(UUID user) {
-        this.user = user;
-    }
-
-    public Date getStart() {
-        return start;
-    }
-
-    public void setStart(Date start) {
-        this.start = start;
-    }
-
-    public Date getEnd() {
+    public LocalDate getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(LocalDate end) {
         this.end = end;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public LocalDate getStart() {
+        return start;
+    }
+
+    public void setStart(LocalDate start) {
+        this.start = start;
+    }
+
+    public long getUser() {
+        return user;
+    }
+
+    public void setUser(long user) {
+        this.user = user;
     }
 
     public boolean isLongTerm() {

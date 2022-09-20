@@ -78,7 +78,7 @@ public class UserController {
         return "saved";
     }
 
-    @PostMapping("saveParent")
+    @PostMapping("/saveParent")
     public String saveParent(@RequestBody User user){
         User tempUser = findByUSerName(user.getUser_name());
         if (tempUser != null)
@@ -90,6 +90,15 @@ public class UserController {
         user.setFamily_id(family.getfId());
         userRepository.save(user);
         return "saved";
+    }
+
+    @PostMapping("update")
+    public void update(@RequestBody long id, @RequestBody double amount){
+        //Update the balance of user by receive new change.
+        //first select the old amount, calculate and push the fix value.
+        double old_balance = userRepository.getBalance(id);
+        double new_balance = old_balance + amount;
+        userRepository.updateUser(new_balance, id);
     }
 
 }

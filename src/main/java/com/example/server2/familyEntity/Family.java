@@ -8,12 +8,13 @@ import java.util.UUID;
 public class Family {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long fId;
-    String name;
-    double loanInterest, investLongInterest, investShortInterest;
-    final double MIN_INTEREST = 0.1;
+    private long fId;
+    private String name;
+    private double loanInterest, investLongInterest, investShortInterest;
+    private final double MIN_INTEREST = 0.1;
 
-    protected Family(){}
+    public Family(){}
+
     public Family(String name, long fId,
                   double loanInterest, double investLongInterest,
                   double investShortInterest) {

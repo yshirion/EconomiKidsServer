@@ -13,6 +13,7 @@ import java.util.Optional;
 @Transactional
 @Repository
 public interface FamilyRepository extends CrudRepository<Family, Long> {
+
     @Modifying
     @Query("UPDATE Family f SET f.loanInterest =:loan, f.investLongInterest =:longI" +
             ", f.investShortInterest=:shortI WHERE f.fId =:ID")
