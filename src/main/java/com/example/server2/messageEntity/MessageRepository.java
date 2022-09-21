@@ -15,7 +15,7 @@ public interface MessageRepository extends CrudRepository<Message,Long> {
     @Query(value = "SELECT * FROM messages WHERE messages.sender = ?",nativeQuery = true)
     List<Message> findBySender(long sender);
 
-    @Query(value = "SELECT * FROM messages WHERE messages.destination = ?",nativeQuery = true)
+    @Query(value = "SELECT * FROM messages m WHERE m.destination = ? order by m.today desc",nativeQuery = true)
     List<Message> findByDestination(long destination);
 
     @Modifying

@@ -1,7 +1,7 @@
 package com.example.server2.actEntity;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "actions")
@@ -13,12 +13,12 @@ public class Action {
     private boolean positive;
     private String type;
     private double amount;
-    private LocalDate start;
+    private LocalDateTime start;
 
     public Action() {
     }
 
-    public Action(long user, boolean positive, String type, double amount, LocalDate start) {
+    public Action(long user, boolean positive, String type, double amount, LocalDateTime start) {
         this.user = user;
         this.positive = positive;
         this.type = type;
@@ -67,11 +67,11 @@ public class Action {
     }
 
 
-    public LocalDate getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(LocalDate start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 }

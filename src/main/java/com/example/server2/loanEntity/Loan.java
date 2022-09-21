@@ -1,10 +1,7 @@
 package com.example.server2.loanEntity;
 
-import com.example.server2.actEntity.Action;
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "loans")
@@ -15,18 +12,20 @@ public class Loan {
     private double currentAmount, interest;
     private long user;
     private double amount;
-    private LocalDate start;
+    private LocalDateTime start;
+    private LocalDateTime updateTime;
 
     public Loan() {
     }
 
-    public Loan(long lid, double currentAmount, double interest, long user, double amount, LocalDate start) {
+    public Loan(long lid, double currentAmount, double interest, long user, double amount, LocalDateTime start, LocalDateTime updateTime) {
         this.lid = lid;
         this.currentAmount = currentAmount;
         this.interest = interest;
         this.user = user;
         this.amount = amount;
         this.start = start;
+        this.updateTime = updateTime;
     }
 
     public long getLid() {
@@ -69,11 +68,20 @@ public class Loan {
         this.amount = amount;
     }
 
-    public LocalDate getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(LocalDate start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
+    }
+
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
     }
 }

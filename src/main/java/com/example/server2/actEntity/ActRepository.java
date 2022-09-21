@@ -9,6 +9,6 @@ import java.util.UUID;
 
 @Repository
 public interface ActRepository extends CrudRepository<Action, Long> {
-    @Query(value = "SELECT * FROM actions WHERE actions.user = ?",nativeQuery = true)
+    @Query(value = "SELECT * FROM actions WHERE actions.user = ? order by actions.start desc",nativeQuery = true)
     List<Action> findByUid(long user);
 }

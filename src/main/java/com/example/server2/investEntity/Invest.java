@@ -1,11 +1,7 @@
 package com.example.server2.investEntity;
 
-import com.example.server2.actEntity.Action;
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "invests")
@@ -15,15 +11,16 @@ public class Invest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Iid;
     private double currentAmount, interest;
-    private LocalDate end;
+    private LocalDateTime end;
     private double amount;
-    private LocalDate start;
+    private LocalDateTime start, updateTime;
     private long user;
     private boolean longTerm;
 
     public Invest() {}
 
-    public Invest(long iid, double currentAmount, double interest, LocalDate end, double amount, LocalDate start, long user, boolean longTerm) {
+    public Invest(long iid, double currentAmount, double interest,
+                  LocalDateTime end, double amount, LocalDateTime start, long user, boolean longTerm, LocalDateTime updateTime) {
         Iid = iid;
         this.currentAmount = currentAmount;
         this.interest = interest;
@@ -32,6 +29,7 @@ public class Invest {
         this.start = start;
         this.user = user;
         this.longTerm = longTerm;
+        this.updateTime = updateTime;
     }
 
     public long getIid() {
@@ -58,11 +56,11 @@ public class Invest {
         this.interest = interest;
     }
 
-    public LocalDate getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(LocalDate end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 
@@ -74,11 +72,11 @@ public class Invest {
         this.amount = amount;
     }
 
-    public LocalDate getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(LocalDate start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
@@ -96,5 +94,13 @@ public class Invest {
 
     public void setLongTerm(boolean longTerm) {
         this.longTerm = longTerm;
+    }
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
     }
 }

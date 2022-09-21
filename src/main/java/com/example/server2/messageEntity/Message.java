@@ -4,6 +4,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -19,22 +20,22 @@ public class Message {
 
 
     boolean readed;
-    LocalDate today;
+    LocalDateTime today;
     @Column(name = "text", nullable = false, columnDefinition = "BLOB NOT NULL")
     String text;
 
     public Message() {
     }
 
-    public LocalDate getToday() {
+    public LocalDateTime getToday() {
         return today;
     }
 
-    public void setToday(LocalDate today) {
+    public void setToday(LocalDateTime today) {
         this.today = today;
     }
 
-    public Message(long id, long destination, long sender, String subject, boolean readed, LocalDate today, String text) {
+    public Message(long id, long destination, long sender, String subject, boolean readed, LocalDateTime today, String text) {
         this.id = id;
         this.destination = destination;
         this.sender = sender;
