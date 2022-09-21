@@ -14,10 +14,6 @@ public class MessageController {
 
     @Autowired
     private MessageRepository messageRepository;
-    @GetMapping
-    public String ss(){
-        return "ddd";
-    }
 
     @GetMapping("/from/{uid}")
     public List<Message> findBySend(@PathVariable(value = "uid") long uid){
@@ -28,6 +24,15 @@ public class MessageController {
     public List<Message> findByDest(@PathVariable(value = "uid") long uid){
         List<Message> messages = messageRepository.findByDestination(uid);
         return messages;
+    }
+
+    @PostMapping("/update")
+    public String updateMessages(@RequestBody List<Message> list){
+        for (Message message : list){
+            if (message.isReaded())
+                messageRepository.updateIsRead(message.getId());
+        }
+        return "update";
     }
 
     @Autowired
