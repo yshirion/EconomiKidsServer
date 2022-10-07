@@ -1,4 +1,4 @@
-package com.example.server2.userEntity;
+package com.example.server2.entities;
 
 import javax.persistence.*;
 
@@ -9,7 +9,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private long family_id;
-    private String first_name, last_name, user_name, password;
+    private String first_name, last_name, password;
+    @Column(unique = true)
+    private String user_name;
     private boolean parent;
     private double balance;
 

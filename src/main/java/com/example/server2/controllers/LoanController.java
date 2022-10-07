@@ -1,15 +1,10 @@
-package com.example.server2.loanEntity;
+package com.example.server2.controllers;
 
-import com.example.server2.actEntity.ActController;
-import com.example.server2.actEntity.Action;
-import com.example.server2.familyEntity.Family;
-import com.example.server2.familyEntity.FamilyController;
-import com.example.server2.userEntity.User;
-import com.example.server2.userEntity.UserController;
+import com.example.server2.entities.*;
+import com.example.server2.repositories.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,7 +25,7 @@ public class LoanController {
             double newAmount = yieldInterest(loan.getCurrentAmount(), loan.getInterest(), gap);
             loan.setUpdateTime(today);
             loan.setCurrentAmount(newAmount);
-            loanRepository.updateLoan(today, newAmount, loan.getUser());
+            loanRepository.updateLoan(today, newAmount, loan.getLid());
         }
         return loans;
     }
@@ -44,11 +39,13 @@ public class LoanController {
 
     @PostMapping("/save")
     public String saveLoan(@RequestBody Loan loan) {
+        // First save the investment as 'action'.
         Action action = new Action(loan.getUser(), true,
                 "loan", loan.getAmount(), loan.getStart());
         String saved = actController.saveAction(action);
         if (!saved.equals("saved")) return "";
 
+        //set interest of this invest by the percent of interest in his family.
         User user = userController.findUserById(loan.getUser()).getBody();
         Family family = familyController.findFamilyById(user.getFamily_id());
         loan.setInterest(family.getLoanInterest());
@@ -72,5 +69,16 @@ public class LoanController {
     private double yieldInterest(double principal, double interest, int gap) {
         double yield = Math.pow((1 + interest / 100),gap);
         return principal * yield;
+    }
+
+    @DeleteMapping("/delete")
+    public String delete(@RequestBody List<Loan> loans){
+        for (Loan loan : loans)
+        {
+            loanRepository.delete(loan);
+            Action action = new Action(loan.getUser(), false, "return loan", loan.getCurrentAmount(), LocalDateTime.now());
+            actController.saveAction(action);
+        }
+        return "delete";
     }
 }

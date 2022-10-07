@@ -1,43 +1,39 @@
-package com.example.server2.investEntity;
+package com.example.server2.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "invests")
-public class Invest {
-
+@Table(name = "loans")
+public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Iid;
+    private long lid;
     private double currentAmount, interest;
-    private LocalDateTime end;
-    private double amount;
-    private LocalDateTime start, updateTime;
     private long user;
-    private boolean longTerm;
+    private double amount;
+    private LocalDateTime start;
+    private LocalDateTime updateTime;
 
-    public Invest() {}
+    public Loan() {
+    }
 
-    public Invest(long iid, double currentAmount, double interest,
-                  LocalDateTime end, double amount, LocalDateTime start, long user, boolean longTerm, LocalDateTime updateTime) {
-        Iid = iid;
+    public Loan(long lid, double currentAmount, double interest, long user, double amount, LocalDateTime start, LocalDateTime updateTime) {
+        this.lid = lid;
         this.currentAmount = currentAmount;
         this.interest = interest;
-        this.end = end;
+        this.user = user;
         this.amount = amount;
         this.start = start;
-        this.user = user;
-        this.longTerm = longTerm;
         this.updateTime = updateTime;
     }
 
-    public long getIid() {
-        return Iid;
+    public long getLid() {
+        return lid;
     }
 
-    public void setIid(long iid) {
-        Iid = iid;
+    public void setLid(long lid) {
+        this.lid = lid;
     }
 
     public double getCurrentAmount() {
@@ -56,12 +52,12 @@ public class Invest {
         this.interest = interest;
     }
 
-    public LocalDateTime getEnd() {
-        return end;
+    public long getUser() {
+        return user;
     }
 
-    public void setEnd(LocalDateTime end) {
-        this.end = end;
+    public void setUser(long user) {
+        this.user = user;
     }
 
     public double getAmount() {
@@ -80,21 +76,6 @@ public class Invest {
         this.start = start;
     }
 
-    public long getUser() {
-        return user;
-    }
-
-    public void setUser(long user) {
-        this.user = user;
-    }
-
-    public boolean isLongTerm() {
-        return longTerm;
-    }
-
-    public void setLongTerm(boolean longTerm) {
-        this.longTerm = longTerm;
-    }
 
     public LocalDateTime getUpdateTime() {
         return updateTime;

@@ -1,4 +1,4 @@
-package com.example.server2.familyEntity;
+package com.example.server2.entities;
 
 import javax.persistence.*;
 import java.util.UUID;

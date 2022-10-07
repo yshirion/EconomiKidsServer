@@ -1,4 +1,4 @@
-package com.example.server2.messageEntity;
+package com.example.server2.entities;
 
 import org.hibernate.annotations.Type;
 

@@ -1,5 +1,6 @@
-package com.example.server2.userEntity;
+package com.example.server2.repositories;
 
+import com.example.server2.entities.User;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

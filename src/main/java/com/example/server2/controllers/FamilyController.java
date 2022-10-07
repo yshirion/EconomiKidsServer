@@ -1,15 +1,11 @@
-package com.example.server2.familyEntity;
+package com.example.server2.controllers;
 
-import com.example.server2.investEntity.Invest;
-import com.example.server2.userEntity.User;
-import com.example.server2.userEntity.UserRepository;
+import com.example.server2.entities.Family;
+import com.example.server2.repositories.FamilyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/family")
@@ -31,6 +27,7 @@ public class FamilyController {
         return family1;
     }
 
+    //update all interest.
     @PostMapping("/update")
     public Family update(@RequestBody Family family){
         Family tmp = new Family();

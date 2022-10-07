@@ -1,4 +1,4 @@
-package com.example.server2.actEntity;
+package com.example.server2.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
