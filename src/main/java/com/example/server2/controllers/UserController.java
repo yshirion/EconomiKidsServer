@@ -62,6 +62,12 @@ public class UserController {
         return parent.orElse(null);
     }
 
+    @GetMapping("changeParent/{id}")
+    public String changeParent(@PathVariable(value = "id") long id){
+        userRepository.updateToParent(id);
+        return "change";
+    }
+
     @Autowired
     private FamilyController familyController;
 
@@ -114,4 +120,9 @@ public class UserController {
         userRepository.updateUser(new_balance, id);
     }
 
+    @DeleteMapping("deleteUser")
+    public String deleteUser(@RequestBody User user){
+        userRepository.delete(user);
+        return "delete";
+    }
 }

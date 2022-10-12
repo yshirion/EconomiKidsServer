@@ -31,4 +31,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Modifying
     @Query("UPDATE User u SET u.balance =:new_balance WHERE u.id =:id")
     void updateUser(@Param("new_balance") double new_balance, @Param("id") long id);
+
+    @Modifying
+    @Query("UPDATE User u SET u.parent = true WHERE u.id =:id")
+    void updateToParent(@Param("id") long id);
 }
