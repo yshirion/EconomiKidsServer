@@ -6,6 +6,8 @@ import com.example.server2.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,9 +59,9 @@ public class UserController {
 
     // Find the parent of specific family.
     @GetMapping("/parent/{fid}")
-    public User getParent(@PathVariable(value = "fid") long fid){
-        Optional<User> parent = userRepository.findParentByFamily(fid, true);
-        return parent.orElse(null);
+    public ArrayList<User> getParent(@PathVariable(value = "fid") long fid){
+        ArrayList<User> parent = userRepository.findParentByFamily(fid);
+        return parent;
     }
 
     @GetMapping("changeParent/{id}")

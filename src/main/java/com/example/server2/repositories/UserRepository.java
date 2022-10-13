@@ -7,6 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +24,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Query(value = "SELECT * FROM users WHERE users.user_name = ?",nativeQuery = true)
     Optional<User> checkUserByName(String name);
 
-    @Query(value = "SELECT * FROM users WHERE users.family_id = ?1 and users.parent = ?2",nativeQuery = true)
-    Optional<User> findParentByFamily(Long familyId, boolean ifParent);
+    @Query(value = "SELECT * FROM users WHERE users.family_id = ?1 and users.parent = true",nativeQuery = true)
+    ArrayList<User> findParentByFamily(Long familyId);
 
     @Query(value = "SELECT balance FROM users u WHERE u.id =?1", nativeQuery = true)
     Double getBalance(Long id);
